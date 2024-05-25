@@ -58,18 +58,21 @@ button {
   display: none;
 }
 .loader {
+  display: block;
   transform: rotateZ(45deg);
   perspective: 1000px;
   border-radius: 50%;
   width: 48px;
   height: 48px;
   color: rgb(227, 238, 211);
-  position: fixed;
-  top: 50%;
+  /*position: fixed;
+  top: 100%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);*/
   visibility: hidden;
   pointer-events: none;
+  margin-left: auto;
+  margin-right: auto;
 }
 .loader:before,
 .loader:after {
@@ -229,14 +232,15 @@ button {
 }
 
 .btn-more {
+  display: block;
   font-family: 'Montserrat', sans-serif;
   color: #fff;
   width: 125px;
   border-radius: 8px;
   height: 40px;
   background: #4e75ff;
-  margin-left: 657px;
-  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
   &.d-none {
     display: none;
   }
