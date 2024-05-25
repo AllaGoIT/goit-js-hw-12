@@ -42,16 +42,20 @@ function onSubmit(event) {
         }
         createGalleryList(json.hits);
         if (PER_PAGE < json.total) {
+          console.log("collection is big")
           totalPages = Math.ceil(json.total / PER_PAGE);
           if (totalPages > 1) {
             btnmEl.classList.remove('d-none');
           }
         }
-        console.log(json);
-        console.log(totalPages);
       }
       catch (error) {
-        console.log(error);
+         iziToast.show({
+              position: 'topRight',
+              message: "We're sorry, but you've reached the end of search results",
+              color: 'red',
+              close: true,
+            })
       };
       galEl.innerHTML = "";
     })
@@ -77,10 +81,8 @@ const onLoadMorePressed = async event => {
     imagePage += 1;
     btnmEl.classList.remove('d-none');
 
-    // Get news data
     const  data  = await fetchPhotosCats(searchQuery, imagePage);
-    //console.log(data);
-    // Render news
+
     if (data.total === 0) {
       loadEl.style.visibility = "hidden";
       loadEl.style.pointerEvents = "none";
@@ -98,10 +100,12 @@ const onLoadMorePressed = async event => {
     btnmEl.classList.add('d-none');
     smoothScrollOnLoadMore();
 
-    // Hide button if reach end of collection
     if (imagePage > totalPages) {
       btnmEl.classList.add('d-none');
       btnmEl.removeEventListener('click', onLoadMorePressed);
+    }
+    else {
+      btnmEl.classList.remove('d-none');
     }
   } catch (error) {
     console.log(error);

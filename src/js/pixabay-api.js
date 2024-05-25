@@ -16,8 +16,6 @@ const searchParams = new URLSearchParams({
     safesearch: "true",
     per_page: PER_PAGE,
     page:imagePage,
-    // _limit: 15,
-    // _sort: "name",
   });
     const { data } = await axios.get(`${BASE_URL}?${searchParams}`);
     return data;

@@ -34,5 +34,4 @@ const lightbox = new SimpleLightbox('.gallery a', {
     const loadEl = document.querySelector(".loader");
     loadEl.style.visibility = "hidden";
     loadEl.style.pointerEvents = "none";
-    btnmEl.classList.remove('d-none');
   }
