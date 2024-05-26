@@ -25,7 +25,7 @@ function onSubmit(event) {
   loadEl.style.visibility = "visible";
   loadEl.style.pointerEvents = "all";
 
-  if (searchQuery === 0) {
+  if (searchQuery.length === 0) {
     loadEl.style.visibility = "hidden";
     loadEl.style.pointerEvents = "none";
     btnmEl.classList.add("d-none");
