@@ -1,4 +1,3 @@
-
 const galEl = document.querySelector("ul.gallery");
 const btnmEl = document.querySelector(".btn-more");
 import SimpleLightbox from "simplelightbox";

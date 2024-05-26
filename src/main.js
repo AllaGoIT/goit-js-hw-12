@@ -55,33 +55,35 @@ function onSubmit(event) {
             btnmEl.classList.remove('d-none');
           }
         }
+        else {
+          iziToast.show({
+            position: 'topRight',
+            message: "We're sorry, but you've reached the end of search results",
+            color: 'red',
+            close: true,
+          });
+        }
       }
       catch (error) {
-        //  iziToast.show({
-        //       position: 'topRight',
-        //       message: "We're sorry, but you've reached the end of search results",
-        //       color: 'red',
-        //       close: true,
-        //     })
-      };
+        console.log(error);
+      }
       galEl.innerHTML = "";
       imagePage = 1;
     })
-  };
+  }
 }
     
-  const smoothScrollOnLoadMore = () => {
+const smoothScrollOnLoadMore = () => {
   const lastImage = galEl.querySelector('li.gallery-item');
   const imageHeight = lastImage.getBoundingClientRect().height;
   const scrollHeight = imageHeight * 5 * imagePage + 100;
-  console.log(scrollHeight);
 
   window.scrollBy({
     top: scrollHeight,
     left: 0,
     behavior: 'smooth',
   });
-};
+}
 
 const onLoadMorePressed = async event => {
   try {
@@ -108,7 +110,6 @@ const onLoadMorePressed = async event => {
     
     smoothScrollOnLoadMore();
     if (PER_PAGE < (data.total -(PER_PAGE*imagePage))) {
-      // totalPages = Math.ceil(json.total / PER_PAGE);
       if (totalPages > 1) {
         btnmEl.classList.remove('d-none');
       }
@@ -117,8 +118,6 @@ const onLoadMorePressed = async event => {
       btnmEl.classList.add('d-none');
     }
     if (imagePage >= totalPages) {
-      //btnmEl.classList.add('d-none');
-      btnmEl.removeEventListener('click', onLoadMorePressed);
       iziToast.show({
         position: 'topRight',
         message: "We're sorry, but you've reached the end of search results",
@@ -126,18 +125,9 @@ const onLoadMorePressed = async event => {
         close: true,
       })
     }
-    // else {
-    //   btnmEl.classList.remove('d-none');
-    // }
-     
   } catch (error) {
     console.log(error);
-    // iziToast.error({
-    //   message: "We're sorry, but you've reached the end of search results",
-    //   position: 'topRight',
-    //   timeout: 2000,
-    // });
   }
-};
+}
     
 btnmEl.addEventListener("click", onLoadMorePressed);
