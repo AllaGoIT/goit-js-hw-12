@@ -49,12 +49,12 @@ function onSubmit(event) {
         }
       }
       catch (error) {
-         iziToast.show({
-              position: 'topRight',
-              message: "We're sorry, but you've reached the end of search results",
-              color: 'red',
-              close: true,
-            })
+        //  iziToast.show({
+        //       position: 'topRight',
+        //       message: "We're sorry, but you've reached the end of search results",
+        //       color: 'red',
+        //       close: true,
+        //     })
       };
       galEl.innerHTML = "";
       imagePage = 1;
@@ -115,11 +115,11 @@ const onLoadMorePressed = async event => {
      smoothScrollOnLoadMore();
   } catch (error) {
     console.log(error);
-    iziToast.error({
-      message: "We're sorry, but you've reached the end of search results",
-      position: 'topRight',
-      timeout: 2000,
-    });
+    // iziToast.error({
+    //   message: "We're sorry, but you've reached the end of search results",
+    //   position: 'topRight',
+    //   timeout: 2000,
+    // });
   }
 };
     
