@@ -84,7 +84,6 @@ function onSubmit(event) {
 
 const onLoadMorePressed = async event => {
   try {
-       
     imagePage += 1;
     btnmEl.classList.remove('d-none');
 
@@ -103,12 +102,21 @@ const onLoadMorePressed = async event => {
         })
       ));
     }
-   await createGalleryList(data.hits);
-   
-    btnmEl.classList.add('d-none');
-   
-    if (imagePage > totalPages) {
+
+    await createGalleryList(data.hits);
+    
+    smoothScrollOnLoadMore();
+    if (PER_PAGE < (data.total -(PER_PAGE*imagePage))) {
+      // totalPages = Math.ceil(json.total / PER_PAGE);
+      if (totalPages > 1) {
+        btnmEl.classList.remove('d-none');
+      }
+    }
+    else {
       btnmEl.classList.add('d-none');
+    }
+    if (imagePage >= totalPages) {
+      //btnmEl.classList.add('d-none');
       btnmEl.removeEventListener('click', onLoadMorePressed);
       iziToast.show({
         position: 'topRight',
@@ -117,10 +125,10 @@ const onLoadMorePressed = async event => {
         close: true,
       })
     }
-    else {
-      btnmEl.classList.remove('d-none');
-    }
-     smoothScrollOnLoadMore();
+    // else {
+    //   btnmEl.classList.remove('d-none');
+    // }
+     
   } catch (error) {
     console.log(error);
     // iziToast.error({
