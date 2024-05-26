@@ -32,6 +32,7 @@ function onSubmit(event) {
   }
 
   if (searchQuery) {
+    btnmEl.classList.add("d-none");
     fetchPhotosCats(searchQuery).then(json => {
       try {
         if (json.total === 0) {
