@@ -25,12 +25,19 @@ function onSubmit(event) {
   loadEl.style.visibility = "visible";
   loadEl.style.pointerEvents = "all";
 
+  if (searchQuery === 0) {
+    loadEl.style.visibility = "hidden";
+    loadEl.style.pointerEvents = "none";
+    btnmEl.classList.add("d-none");
+  }
+
   if (searchQuery) {
     fetchPhotosCats(searchQuery).then(json => {
       try {
         if (json.total === 0) {
           loadEl.style.visibility = "hidden";
           loadEl.style.pointerEvents = "none";
+         
           throw new Error((
             iziToast.show({
               position: 'topRight',
@@ -86,6 +93,7 @@ const onLoadMorePressed = async event => {
     if (data.total === 0) {
       loadEl.style.visibility = "hidden";
       loadEl.style.pointerEvents = "none";
+      btnmEl.classList.add("d-none");
       throw new Error((
         iziToast.show({
           position: 'topRight',
